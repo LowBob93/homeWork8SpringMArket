@@ -20,7 +20,7 @@ angular.module('market-front', []).controller('appController', function ($scope,
 
 
     $scope.removeProduct = function (product) {
-        $http.get(contextPath + 'products/delete/' + product.id)
+        $http.delete(contextPath + 'products/' + product.id)
             .then(function (response) {
                 console.log(response);
                 $scope.loadProducts(currentPageIndex);
@@ -59,6 +59,14 @@ angular.module('market-front', []).controller('appController', function ($scope,
             });
     }
 
+    $scope.updateProduct = function () {
+            $http.put(contextPath + 'products', $scope.new_product)
+                .then(function (response) {
+                        $scope.loadProducts(currentPageIndex);
+                        $scope.new_product = null;
+                    });
+        }
+
 
     $scope.generatePagesIndexes = function (startPage, endPage) {
         let arr = [];
@@ -67,7 +75,5 @@ angular.module('market-front', []).controller('appController', function ($scope,
         }
         return arr;
     }
-
-
 
 });
