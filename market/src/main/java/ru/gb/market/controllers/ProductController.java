@@ -3,12 +3,17 @@ package ru.gb.market.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.gb.market.DTO.ProductDto;
+import ru.gb.market.exceptions.ResourceNotFoundException;
 import ru.gb.market.models.Product;
 import ru.gb.market.services.ProductService;
 
+
+
 @RestController
+@RequestMapping("/api/v1")
 @RequiredArgsConstructor
 public class ProductController {
     private final ProductService productService;
@@ -24,18 +29,26 @@ public class ProductController {
         return productService.findWithParams(min, max, pageIndex).map(ProductDto::new);
     }
 
-
     @GetMapping("/products/{id}")
-    public ProductDto findById(@PathVariable Long id) {
-        return new ProductDto(productService.findById(id).get());
+    public  ProductDto findById(@PathVariable long id){
+        return new ProductDto(productService.findById(id)
+                   .orElseThrow(()-> new ResourceNotFoundException("Product id = " + id + " not found")));
     }
 
-    @PostMapping("products")
-    public ProductDto save(@RequestBody Product product) {
-        return new ProductDto(productService.save(product));
+
+    @PostMapping("/products")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void save    (@RequestBody Product product) {
+        productService.save(product);
     }
 
-    @GetMapping("products/delete/{id}")
+    @PutMapping("/products")
+    public void update(@RequestBody Product product) {
+        productService.save(product);
+    }
+
+
+    @DeleteMapping("products/{id}")
     public void deleteById(@PathVariable Long id) {
         productService.deleteById(id);
     }

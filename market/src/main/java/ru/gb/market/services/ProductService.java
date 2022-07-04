@@ -22,14 +22,15 @@ public class ProductService {
         return productRepository.findById(id);
 
     }
-    public Product save(Product product){
-        return productRepository.save(product);
+    public void save (Product product){
+         productRepository.save(product);
     }
 
 
     public void deleteById(Long id) {
         productRepository.deleteById(id);
     }
+
     public Page<Product> findWithParams(Integer min,Integer max,int pageCount){
         Pageable page = PageRequest.of(pageCount - 1, 10);
         if (min == null && max ==null){
