@@ -5,9 +5,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import ru.gb.market.DTO.ProductDto;
+import ru.gb.market.exceptions.ResourceNotFoundException;
 import ru.gb.market.models.Product;
 import ru.gb.market.repositories.ProductRepository;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
@@ -43,6 +46,18 @@ public class ProductService {
             return productRepository.findByPriceBetween(min, max, page);
             }
         }
+
+    @Transactional
+    public void updateProductFromDto(ProductDto productDto) {
+        Product product = findById(productDto.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Product id = " + productDto.getId() + " not found"));
+        product.setTitle(productDto.getTitle());
+        product.setPrice(productDto.getPrice());
     }
+
+
+
+
+}
 
 
