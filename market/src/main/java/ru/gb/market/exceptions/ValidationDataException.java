@@ -1,0 +1,24 @@
+package ru.gb.market.exceptions;
+import java.util.List;
+
+
+
+public class ValidationDataException extends RuntimeException {
+
+    private List<String> messages;
+
+    public List<String> getMessages() {
+        return messages;
+    }
+
+    public ValidationDataException(List<String> messages) {
+
+        this.messages = messages;
+    }
+}
+
+
+
+
+
+
