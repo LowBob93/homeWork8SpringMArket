@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public class CartController {
 
         private  CartService cartService;
-        private  final ProductService productService;
+        private   ProductService productService;
 
         public CartController(CartService cartService, ProductService productService) {
             this.cartService = cartService;

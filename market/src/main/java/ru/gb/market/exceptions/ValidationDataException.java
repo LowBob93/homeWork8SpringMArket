@@ -11,6 +11,10 @@ public class ValidationDataException extends RuntimeException {
         return messages;
     }
 
+    public ValidationDataException(String message) {
+        this(List.of(message));
+    }
+
     public ValidationDataException(List<String> messages) {
 
         this.messages = messages;
