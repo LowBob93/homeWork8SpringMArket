@@ -18,7 +18,7 @@ public class ProductDto {
     private String title;
 
     @Min(value = 1, message = "price can't be lower then 1 rub")
-    private  int price;
+    private  long price;
 
 
     public ProductDto(Product product) {

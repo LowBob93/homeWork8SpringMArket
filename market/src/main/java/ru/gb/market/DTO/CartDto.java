@@ -1,10 +1,14 @@
 package ru.gb.market.DTO;
 
 import lombok.Data;
+import org.springframework.data.redis.core.RedisHash;
 
 import java.util.List;
 
+
 @Data
+@RedisHash
 public class CartDto {
-    private List<ProductDto> cart;
+    private String id;
+    private List<CartListProductDto> cart;
 }
