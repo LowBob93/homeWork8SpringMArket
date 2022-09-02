@@ -72,3 +72,13 @@ create table users_roles
     role_id bigint not null references roles (id),
     primary key (user_id, role_id)
 );
+CREATE TABLE "items"
+(
+    "id"         bigserial PRIMARY KEY NOT NULL,
+    "product_id" bigint                NOT NULL,
+    "count"      int                   NOT NULL,
+    "price"      numeric(2)            NOT NULL,
+    "price"      numeric(10,2)            NOT NULL,
+    "created_at" timestamp DEFAULT (current_timestamp),
+    "updated_at" timestamp DEFAULT (current_timestamp),
+    CONSTRAINT fk_product_item FOREIGN KEY ("product_id") REFERENCES "products" ("id")
