@@ -30,6 +30,10 @@
                       templateUrl: 'createUser/createUser.html',
                       controller: 'createUserController'
             })
+             .when('/statistic', {
+                            templateUrl: 'statistic/statistic.html',
+                            controller: 'statisticController'
+                        })
             .otherwise({
                 redirectTo: '/'
             });
