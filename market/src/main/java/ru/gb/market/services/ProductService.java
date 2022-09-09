@@ -11,6 +11,7 @@ import ru.gb.market.models.Product;
 import ru.gb.market.repositories.ProductRepository;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -53,6 +54,10 @@ public class ProductService {
                 .orElseThrow(() -> new ResourceNotFoundException("Product id = " + productDto.getId() + " not found"));
         product.setTitle(productDto.getTitle());
         product.setPrice(productDto.getPrice());
+    }
+
+    public List<Product> findAll() {
+        return productRepository.findAll();
     }
 
 

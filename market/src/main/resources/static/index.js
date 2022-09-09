@@ -34,6 +34,10 @@
                             templateUrl: 'statistic/statistic.html',
                             controller: 'statisticController'
                         })
+             .when('/createFile', {
+                            templateUrl: 'createFile/createFile.html',
+                            controller: 'CreateFileController'
+                        })
             .otherwise({
                 redirectTo: '/'
             });

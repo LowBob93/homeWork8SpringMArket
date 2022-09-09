@@ -20,10 +20,12 @@ public class ProductDto {
     @Min(value = 1, message = "price can't be lower then 1 rub")
     private  long price;
 
+    private String categoryName;
 
     public ProductDto(Product product) {
         this.id = product.getId();
         this.title = product.getTitle();
         this.price = product.getPrice();
+
     }
 }
