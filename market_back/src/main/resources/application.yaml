@@ -1,0 +1,28 @@
+server:
+  port: 8189
+  servlet:
+    context-path: /market
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+      url: jdbc:postgresql://localhost:49156/postgres
+      hikari:
+        username: postgres
+        password: postpw
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL94Dialect
+        liquibase:
+          change-log: classpath:/db/changelog/changelog-master.yaml
+import: security.yaml
+  market:
+    storage:
+      path: files
+utils:
+  cart:
+    prefix: WEB_MARKET_
+jwt:
+  secret: kwqwer1243124asdasf1e12d12dfasdaksdkaskdasd
+  lifetime: 3600000
